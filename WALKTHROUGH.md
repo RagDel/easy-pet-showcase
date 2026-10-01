@@ -1,5 +1,7 @@
 # A one-minute walkthrough
 
+**Pet-Easy** is the current product name. The captured local build still displays its previous name, **EasyPet**.
+
 These are screenshots of the actual web interface with an isolated fictional dataset. They are not a live public account. No medical interval in the demonstration should be interpreted as care advice.
 
 ## 1. See shared care in context

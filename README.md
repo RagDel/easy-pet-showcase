@@ -1,4 +1,4 @@
-# EasyPet
+# Pet-Easy
 
 **Shared pet care, with a clear record of what happened and what comes next.**
 
@@ -6,7 +6,7 @@ A Greek-first web and Android application for pet profiles, care events, reminde
 
 **Status:** working local development application; preparing a small invited owner/shared-care trial. Not publicly launched or claimed production-ready. This repository is a curated portfolio case study. The application source remains private.
 
-![EasyPet timeline with fictional demonstration records](assets/timeline.jpg)
+![Pet-Easy timeline with fictional demonstration records](assets/timeline.jpg)
 
 [One-minute walkthrough](WALKTHROUGH.md) · [Architecture and decisions](ARCHITECTURE.md) · [Verification boundaries](VERIFICATION.md) · [Public Python sample](https://github.com/RagDel/completion-recurrence)
 
@@ -14,7 +14,7 @@ A Greek-first web and Android application for pet profiles, care events, reminde
 
 When several people care for a pet, remembering a date is only part of the problem. They also need to know whether something was completed, who changed it, which record is current and what another caregiver is allowed to do.
 
-EasyPet organizes that work around pet profiles and a shared timeline. The core can be used by one owner; invitations are optional.
+Pet-Easy organizes that work around pet profiles and a shared timeline. The core can be used by one owner; invitations are optional.
 
 ## Implemented in the local application
 
@@ -51,6 +51,8 @@ EasyPet organizes that work around pet profiles and a shared timeline. The core 
 I define the product requirements and scope, choose the user-facing behaviour and review/test the experience. Codex assists with implementation, debugging, tests, research and documentation. This is an AI-assisted project; the case study does not imply that every line was written manually.
 
 ## About the screenshots
+
+The public product name is **Pet-Easy**. These captures retain the earlier **EasyPet** label from the existing local build; the application branding update is pending. Repository/package names remain unchanged.
 
 The images show the actual web build connected to an isolated, read-only fixture server. All account, pet, event and caregiver records in these captures are fictional. They illustrate the interface; they are not evidence of live notifications, production availability or an Android runtime. No private database records are used.
 
