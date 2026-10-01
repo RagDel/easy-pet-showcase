@@ -1,65 +1,59 @@
 # Pet-Easy
 
-**Shared pet care, with a clear record of what happened and what comes next.**
+**One timeline. Every pet. Shared care that stays in sync.**
 
-A Greek-first web and Android application for pet profiles, care events, reminders and optional caregiver collaboration. Built by Tilemachos Tragakis with Codex assistance.
+Pet-Easy brings pet profiles, care events, reminders and caregiver collaboration into a connected web and native Android experience. Greek by default, with an English switch.
 
-**Status:** working local development application; preparing a small invited owner/shared-care trial. Not publicly launched or claimed production-ready. This repository is a curated portfolio case study. The application source remains private.
+A product and engineering case study by **Tilemachos Tragakis**, developed with Codex and scoped AI-agent workflows.
 
-![Pet-Easy timeline with fictional demonstration records](assets/timeline.jpg)
+**React · TypeScript · Django REST Framework · PostgreSQL · Kotlin · Jetpack Compose · Docker**
 
-[One-minute walkthrough](WALKTHROUGH.md) · [Architecture and decisions](ARCHITECTURE.md) · [Verification boundaries](VERIFICATION.md) · [Public Python sample](https://github.com/RagDel/completion-recurrence)
+![Pet-Easy shared timeline with fictional pets and care events](assets/timeline.jpg)
 
-## The problem
+[Visual walkthrough](WALKTHROUGH.md) · [Architecture](ARCHITECTURE.md) · [Agents and skills](AGENT_WORKFLOW.md) · [Verification](VERIFICATION.md) · [Runnable Python sample](https://github.com/RagDel/completion-recurrence)
 
-When several people care for a pet, remembering a date is only part of the problem. They also need to know whether something was completed, who changed it, which record is current and what another caregiver is allowed to do.
+**October 2026:** web and Android features are implemented and undergoing iterative verification. Managed cloud deployment and public release are upcoming milestones. This public repository presents the product and engineering; application source remains private.
 
-Pet-Easy organizes that work around pet profiles and a shared timeline. The core can be used by one owner; invitations are optional.
+## The product
 
-## Implemented in the local application
+Sharing pet care means coordinating more than dates. An owner needs to know what happened, what comes next, who changed a record and what each caregiver can do. Pet-Easy connects these decisions in one place, while remaining useful for someone caring for a pet alone.
 
-- A pan/zoom timeline with pet colours, species-aware event categories and filters.
-- Pet profiles, private event documents and provider contact reuse.
-- View-only or editing access, owner-managed invitations and attributed changes.
-- Repeats anchored to actual completion, configurable reminders and Android snooze/retry behaviour.
-- Shared Django API for a React website and native Kotlin Android app.
-- Account export, session revocation and a cancellable account-deletion process.
-
-## Engineering focus
-
-| Problem | Design choice |
+| Capability | What the experience offers |
 |---|---|
-| Two caregivers edit the same record | Server authorization and version checks; preserve edits when resolving conflicts |
-| A completion request is retried | Idempotent handling so one completion does not create duplicate successors |
-| A task is completed later than planned | Calculate its next occurrence from actual completion |
-| Access changes while a screen is open | Revalidate and clear stale views; enforce access in the API |
-| A phone or PC restarts | Persist encrypted device sessions and validate them with the server |
-| A backup predates an account deletion | Reapply independent deletion receipts during restoration |
+| **A shared timeline** | One horizontal date axis for every selected pet, circular photo/category markers, pan and zoom, a Today shortcut, and pet/type filters. Crowded events group by overlap and expand in place. |
+| **Profiles with personality** | Cropped photos, optional birthdays, age and kg/lb weight, plus 24 actual gradient presets and custom colors shared across clients. |
+| **Flexible care records** | Vaccines, antiparasitic care, treatment, grooming, food and species-aware supplies. Optional product details, reusable choices, documents and provider contacts stay with the event. |
+| **Caregiver collaboration** | Owner-managed invitations, View only or View & edit access, attributed changes and the ability to leave a shared pet. |
+| **Completion-based planning** | Repeat intervals count from actual completion. Reminder preferences, adjustable times and native Android snooze/dismissal behavior support follow-up. |
+| **Nearby services** | Nearest-first provider results, grouped map pins, city/area search, relevant business categories and external Google Maps links. Initial coverage uses source-attributed open data for Greece. |
+| **Control over records** | Private attachments, data export, session management and distinct pet-profile/account deletion flows with recovery or cancellation periods. |
 
-## Stack
+A separate **professional workspace is in development**, covering clients and pets, practice details and reminder planning. Partner bookings, payments and external professional messaging remain future work.
 
-**Backend:** Python, Django, Django REST Framework, PostgreSQL.
+## Engineering behind the interface
 
-**Website:** React, TypeScript, Vite.
+| Challenge | Implemented approach |
+|---|---|
+| Many pets and overlapping dates on one screen | Zoom-aware collision groups preserve full event counts and open a bounded detail grid. |
+| The same data on web and Android | A shared API and behavior contracts, with native interfaces and shared visual presets. |
+| Two caregivers change one event | Version-aware updates expose conflicts instead of silently overwriting changes. |
+| A completion request is retried | Retry-safe completion avoids generating duplicate successor events. |
+| A task is completed late | Calendar recurrence starts from completion, with explicit month-end and leap-year behavior. |
+| Access changes while details are open | Clients clear stale views and actions as access changes. |
+| A familiar visual feature evolves | Existing solid pet colors remain valid alongside the new two-stop gradients. |
 
-**Android:** Kotlin, Jetpack Compose.
+The [architecture case study](ARCHITECTURE.md) explains these decisions. The [standalone recurrence sample](https://github.com/RagDel/completion-recurrence) provides inspectable Python code, a CLI and tests for one scheduling problem from the project.
 
-**Local operations:** Docker Compose; separate production configuration, not yet deployed.
+## How I build with agents
 
-## Ownership and development
+I own product direction, choose the stack and user-facing behavior, and review the experience. I use Codex agents for focused research, implementation, debugging, verification and documentation, with explicit scope and acceptance criteria.
 
-I define the product requirements and scope, choose the user-facing behaviour and review/test the experience. Codex assists with implementation, debugging, tests, research and documentation. This is an AI-assisted project; the case study does not imply that every line was written manually.
+Ten project-specific skills separate product, UX, UI, architecture, backend, browser, Android, database, containers and integration verification. Shared contracts and recorded decisions connect their work; independent reviews check results before integration. [See the workflow and a concrete feature example.](AGENT_WORKFLOW.md)
 
-## About the screenshots
+## Evidence and next steps
 
-The public product name is **Pet-Easy**. These captures retain the earlier **EasyPet** label from the existing local build; the application branding update is pending. Repository/package names remain unchanged.
+Recorded checks include PostgreSQL integration tests, responsive Greek/English browser journeys, Android JVM tests and lint, and selected browser-to-Android persistence checks. The visual walkthrough uses the current web interface and fictional demonstration data. Narrow-screen web captures are labelled as web, and are separate from native Android evidence.
 
-The images show the actual web build connected to an isolated, read-only fixture server. All account, pet, event and caregiver records in these captures are fictional. They illustrate the interface; they are not evidence of live notifications, production availability or an Android runtime. No private database records are used.
+Next milestones are **managed cloud deployment**, release distribution, monitoring, broader physical-device and accessibility testing, and expanded professional workflows. Notification integration and development delivery checks do not establish production delivery reliability. [Verification scope and remaining work](VERIFICATION.md).
 
-The walkthrough is available directly in this repository without creating an account or running the private app. For runnable public code, see [completion-recurrence](https://github.com/RagDel/completion-recurrence).
-
-## Scope boundaries
-
-iOS is deferred. Professional booking/payment services, billing, public hosting and diagnostic AI are not part of the released offering. Account deletion and pet-profile deletion have different retention semantics; see [architecture](ARCHITECTURE.md). The product name is a working brand, not a claim of trademark registration.
-
-Published for portfolio review. This repository does not grant a license to the private application or its branding. No open-source reuse license has been selected for these case-study materials.
+Published for portfolio review. No open-source reuse license has been selected for the case-study materials, branding or private application.
